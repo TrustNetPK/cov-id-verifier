@@ -9,6 +9,7 @@ import {
   NavLink
 } from 'reactstrap';
 import { useHistory } from 'react-router-dom'
+import Auth from '../helpers/Auth'
 
 const HeaderComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,14 @@ const HeaderComponent = () => {
     setIsOpen(false)
   }, [window.location.pathname]);
 
+  const handleLogin = () => {
+    history.push('/login')
+  }
 
+  const handleLogout = () => {
+    Auth.signout();
+    history.replace('/')
+  }
 
   return (
     <div>
@@ -36,9 +44,11 @@ const HeaderComponent = () => {
             <NavItem>
               <NavLink href="https://trust.net.pk/covid19">Web</NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="#">Book Ticket</NavLink>
-            </NavItem>
+            {Auth.getAuth() ? <NavItem>
+              <NavLink onClick={handleLogout} style={{ cursor: 'pointer' }}>Log Out</NavLink>
+            </NavItem> : <NavItem>
+                <NavLink onClick={handleLogin} style={{ cursor: 'pointer' }}>Login</NavLink>
+              </NavItem>}
           </Nav>
         </Collapse>
       </Navbar>
