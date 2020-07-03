@@ -14,11 +14,11 @@ const BookTicketForm = (props) => {
     const totoggle = () => setoOpen(!todropdownOpen)
 
 
-    const [from, setFrom] = useState('Select From Location')
-    const [to, setTo] = useState('Select To Location')
-    const [name, setName] = useState('')
-    const [CNIC, setCNIC] = useState('')
-    const [passportno, setPassport] = useState('')
+    const [from, setFrom] = useState(props.From)
+    const [to, setTo] = useState(props.To)
+    const [name, setName] = useState(props.PersonName)
+    const [CNIC, setCNIC] = useState(props.Cnic)
+    const [passportno, setPassport] = useState(props.Passport)
     const history = useHistory();
 
     const handleRequest = () => {
@@ -61,7 +61,7 @@ const BookTicketForm = (props) => {
                         <DropdownToggle caret color="primary" >
                             {from}
                         </DropdownToggle>
-                        <DropdownMenu name="fromLocations" >
+                        <DropdownMenu value={from} name="fromLocations" >
                             <DropdownItem name="lahore" onClick={(e) => { setFrom(e.target.innerText) }} >Lahore - Allama Iqbal Intl. (LHE)</DropdownItem>
 
                             <DropdownItem name="karachi" onClick={(e) => { setFrom(e.target.innerText) }} >Karachi - Jinnah Intl. (KHI)</DropdownItem>
@@ -76,7 +76,7 @@ const BookTicketForm = (props) => {
                         <DropdownToggle caret color="primary">
                             {to}
                         </DropdownToggle>
-                        <DropdownMenu name="toLocations" >
+                        <DropdownMenu value={to} name="toLocations" >
                             <DropdownItem name="ain" onClick={(e) => { setTo(e.target.innerText) }} >Al Ain International Airport (AAN)</DropdownItem>
                             <DropdownItem name="jakartra" onClick={(e) => { setTo(e.target.innerText) }} >Jakarta - Soekarno-Hatta (CGK)</DropdownItem>
                         </DropdownMenu>
@@ -88,19 +88,19 @@ const BookTicketForm = (props) => {
                 <Col md={4}>
                     <FormGroup>
                         <Label for="exampleEmail">Name</Label>
-                        <Input type="text" name="name" id="exampleEmail" onChange={(e) => setName(e.target.value)} placeholder="Name" />
+                        <Input type="text" name="name" value={name} id="exampleEmail" onChange={(e) => setName(e.target.value)} placeholder="Name" />
                     </FormGroup>
                 </Col>
                 <Col md={4}>
                     <FormGroup>
                         <Label for="examplePassword">CNIC #</Label>
-                        <Input type="text" name="cnic" id="examplePassword" onChange={(e) => setCNIC(e.target.value)} placeholder="CNIC" />
+                        <Input type="text" name="cnic" value={CNIC} id="examplePassword" onChange={(e) => setCNIC(e.target.value)} placeholder="CNIC" />
                     </FormGroup>
                 </Col>
                 <Col md={4}>
                     <FormGroup>
                         <Label for="examplePassword">Passport #</Label>
-                        <Input type="text" name="dosage" id="examplePassword" onChange={(e) => setPassport(e.target.value)} placeholder="Passport" />
+                        <Input type="text" name="dosage" value={passportno} id="examplePassword" onChange={(e) => setPassport(e.target.value)} placeholder="Passport" />
                     </FormGroup>
                 </Col>
             </Row>
