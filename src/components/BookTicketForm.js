@@ -39,7 +39,7 @@ const BookTicketForm = (props) => {
                         <DropdownToggle caret color="primary" >
                             {from}
                         </DropdownToggle>
-                        <DropdownMenu name="fromLocations" >
+                        <DropdownMenu value={from} name="fromLocations" >
                             <DropdownItem name="lahore" onClick={(e) => { setFrom(e.target.innerText) }} >Lahore - Allama Iqbal Intl. (LHE)</DropdownItem>
 
                             <DropdownItem name="karachi" onClick={(e) => { setFrom(e.target.innerText) }} >Karachi - Jinnah Intl. (KHI)</DropdownItem>
@@ -54,7 +54,7 @@ const BookTicketForm = (props) => {
                         <DropdownToggle caret color="primary">
                             {to}
                         </DropdownToggle>
-                        <DropdownMenu name="toLocations" >
+                        <DropdownMenu value={to} name="toLocations" >
                             <DropdownItem name="ain" onClick={(e) => { setTo(e.target.innerText) }} >Al Ain International Airport (AAN)</DropdownItem>
                             <DropdownItem name="jakartra" onClick={(e) => { setTo(e.target.innerText) }} >Jakarta - Soekarno-Hatta (CGK)</DropdownItem>
                         </DropdownMenu>
