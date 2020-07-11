@@ -32,7 +32,7 @@ const HeaderComponent = () => {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">vaccify</NavbarBrand>
+        <NavbarBrand href="/">Vaccify</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
