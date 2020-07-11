@@ -13,7 +13,6 @@ const BookTicketForm = (props) => {
     const [todropdownOpen, setoOpen] = useState(false)
     const totoggle = () => setoOpen(!todropdownOpen)
 
-
     const [from, setFrom] = useState('Select From Location')
     const [to, setTo] = useState('Select To Location')
     const [name, setName] = useState('')
@@ -29,13 +28,10 @@ const BookTicketForm = (props) => {
             else {
                 history.push("/verification", { Name: name, CNIC: CNIC, Passport: passportno, from: from, to: to })
             }
-
         }
         else {
             alert("Verify your Vacination")
         }
-
-
     }
 
     const handleVaccination = () => {
@@ -47,7 +43,6 @@ const BookTicketForm = (props) => {
 
                 dataCallback({ Name: name, CNIC: CNIC, Passport: passportno, From: from, To: to })
             }
-            // history.push("/verifyvaccine", { Name: name, CNIC: CNIC, Passport: passportno, from: from, to: to })
         }
     }
 
@@ -106,39 +101,33 @@ const BookTicketForm = (props) => {
             </Row>
             <br />
 
-            <Jumbotron  >
-                <h3 className="mb-5 pb-4 mt-2">Vaccination Proof Verification</h3>
+            <Jumbotron >
+                <h3 className="mt-2">Vaccination Proof Verification</h3>
                 <Row form>
                     <Col md={3}>
                         <FormGroup >
-                            <Input type="text" name="name" id="exampleEmail" value={props.Batch} placeholder="Vaccination Batch #" disabled />
+                            <Input type="text" name="name" id="exampleEmail" value={props.Batch} placeholder="Vaccination Batch #"  />
                         </FormGroup>
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-
-                            <Input type="text" name="cnic" id="examplePassword" value={props.Name} placeholder="Vaccination Name" disabled />
+                            <Input type="text" name="cnic" id="examplePassword" value={props.Name} placeholder="Vaccination Name"  />
                         </FormGroup>
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-
-                            <Input type="text" name="dosage" id="examplePassword" value={props.Expiry} placeholder="Expiry" disabled />
+                            <Input type="text" name="dosage" id="examplePassword" value={props.Expiry} placeholder="Expiry"  />
                         </FormGroup>
                     </Col>
                     <Col md={3}>
                         <FormGroup>
-
-                            <Input type="text" name="dosage" id="examplePassword" value={props.Dosage} placeholder="Dosage" disabled />
+                            <Input type="text" name="dosage" id="examplePassword" value={props.Dosage} placeholder="Dosage" />
                         </FormGroup>
                     </Col>
                 </Row>
-                <Button color="warning" className="m-5" onClick={handleVaccination}>Verify your vaccination</Button>
+                <Button color="warning" className="m-2" onClick={handleVaccination}>Verify your vaccination</Button>
             </Jumbotron>
-            <Button color="primary" onClick={handleRequest} className="m-5" >Book Ticket</Button>
         </Form>
-
-
     );
 }
 
