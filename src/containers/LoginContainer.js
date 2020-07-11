@@ -61,7 +61,7 @@ function LoginContainer(props) {
 						</FormGroup>
 					</Col>
 					<div className="text-center ">
-						<Button className="mt-2" outline color="danger" size="lg" onClick={handleSubmit} >Submit</Button>
+						<Button className="mt-2" outline color="primary" size="lg" onClick={handleSubmit} >Submit</Button>
 					</div>
 
 				</Form>

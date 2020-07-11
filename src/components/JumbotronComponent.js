@@ -11,9 +11,9 @@ const JumbotronComponent = () => {
 
   return (
     <header>
-      <div class="container-fluid text-center" >
-        <div class="row" >
-          <div class="col-md-7 mt-5 pt-5 col-sm-12">
+      <div className="container-fluid text-center" >
+        <div className="row mt-5 pt-3" >
+          <div className="col-md-7 mt-5 pt-5 col-sm-12">
             <h1 className="mt-5">Travel Easy with <br />Vaccination Certificates!</h1>
             <p>This is what we believe at Vaccify.</p>
             <p className="lead">

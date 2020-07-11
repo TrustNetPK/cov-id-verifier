@@ -12,11 +12,11 @@ function VaccineVerificationContainer(props) {
     useEffect(() => {
         checkVaccine(true)
         VaccinationStatus.isVaccinated(isVaccinated)
-        dataCallback(props)
+        // dataCallback(props)
     });
 
     return (
-        <Container className="text-center justify-content-center pt-2 mt-1">
+        <Container className="text-center justify-content-center pt-5 mt-5">
             <h5 className="pb-4 ">Show this QR to the passenger vaccination holder, Get it scanned by their phone</h5>
             <Container>
                 <Col>
