@@ -4,7 +4,7 @@ import JumbotronComponent from '../components/JumbotronComponent';
 
 function MainContainer() {
     return (
-        <Container className="pt-5 mt-5 pb-5 mb-4">
+        <Container fluid style={{ backgroundColor: '#dae5f2' }}>
             <JumbotronComponent />
         </Container>
     );

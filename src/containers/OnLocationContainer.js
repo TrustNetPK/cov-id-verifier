@@ -17,15 +17,9 @@ function OnLocationContainer(props) {
                     setCNIC("XXXXX-XXXXXXX-X")
                     setPassport('123456XBA456')
                     setVaccine(false)
-
-                }}
-                />
+                }}/>
             }
-            {!verifyvaccine &&
-                history.push("/verification", { Name: name, CNIC: CNIC, Passport: passportno })
-
-            }
-
+            {!verifyvaccine && history.push("/verification", { Name: name, CNIC: CNIC, Passport: passportno })}
         </Container>
     );
 }

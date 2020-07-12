@@ -10,6 +10,7 @@ import NoAuthContainer from '../containers/NoAuthContainer'
 import VaccineVerificationContainer from '../containers/VaccineVerificationContainer'
 import VerificationContainer from '../containers/VerificationContainer'
 import OnLocationContainer from '../containers/OnLocationContainer'
+import VaccinationContainer from '../containers/VaccinationContainer'
 
 const PrivateRoute = ({ component, ...options }) => {
     const finalComponent = Auth.getAuth() ? component : NoAuthContainer;
@@ -24,6 +25,7 @@ function Routes() {
                 <Switch>
                     <PrivateRoute path="/onlocation" component={OnLocationContainer} />
                     <Route path="/verification" component={VerificationContainer} />
+                    <Route path="/proof" component={VaccinationContainer} />
                     <Route path="/verifyvaccine" component={VaccineVerificationContainer} />
                     <Route path="/bookticket" component={BookTicketContainer} />
                     <Route path="/noauth" component={NoAuthContainer} />
