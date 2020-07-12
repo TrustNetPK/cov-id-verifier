@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Container, Col } from 'reactstrap'
 import QRComponent from '../components/QRComponent'
-import VaccinationStatus from '../helpers/VaccinationStatus'
+// import VaccinationStatus from '../helpers/VaccinationStatus'
 
 
 
 function VaccineVerificationContainer(props) {
-    const [isVaccinated, checkVaccine] = useState(false)
-    const { dataCallback } = props
+    // const [isVaccinated, checkVaccine] = useState(false)
+    // const { dataCallback } = props
 
-    useEffect(() => {
-        checkVaccine(true)
-        VaccinationStatus.isVaccinated(isVaccinated)
-        // dataCallback(props)
-    });
+    // useEffect(() => {
+    //     checkVaccine(true)
+    //     VaccinationStatus.isVaccinated(isVaccinated)
+    // dataCallback(props)
+    // });
 
     return (
         <Container className="text-center justify-content-center pt-5 mt-5">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   Collapse,
   Navbar,
@@ -19,13 +19,13 @@ import AgaKhanMiniLogo from '../assets/images/aga-khan-mini-transparent.png';
 const HeaderComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const history = useHistory();
-  const { height, width } = useWindowDimensions();
+  const { width } = useWindowDimensions();
 
   const toggle = () => setIsOpen(!isOpen);
 
-  useEffect(() => {
-    setIsOpen(false)
-  }, [window.location.pathname]);
+  // useEffect(() => {
+  //   setIsOpen(false)
+  // }, [window.location.pathname]);
 
   const handleLogin = () => {
     history.push('/login')
@@ -34,11 +34,12 @@ const HeaderComponent = () => {
   const handleLogout = () => {
     Auth.signout();
     history.replace('/')
+
   }
 
   return (
     <div>
-      <Navbar  color="light"
+      <Navbar color="light"
         light
         expand="sm"
         fixed="top"
@@ -54,14 +55,14 @@ const HeaderComponent = () => {
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="https://github.com/TrustNetPK">
-              <Button color="dark" className="px-4">GitHub</Button></NavLink>
+                <Button color="dark" className="px-4">GitHub</Button></NavLink>
             </NavItem>
             {Auth.getAuth() ? <NavItem>
               <NavLink style={{ cursor: 'pointer' }}>
-                <Button color="primary" className="px-4"  onClick={handleLogout}>
+                <Button color="primary" className="px-4" onClick={handleLogout}>
                   Log Out
                 </Button>
-                </NavLink>
+              </NavLink>
             </NavItem> : <NavItem>
                 <NavLink style={{ cursor: 'pointer' }}>
                   <Button color="primary" className="px-4" onClick={handleLogin}>
