@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Col, Row, Button, Form, FormGroup, Input, Jumbotron, Dropdown, DropdownToggle, DropdownMenu, Label, DropdownItem } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Input, Dropdown, DropdownToggle, DropdownMenu, Label, DropdownItem } from 'reactstrap';
 import RightArrow from '../assets/resources/rightarrow.png'
 import { useHistory } from 'react-router-dom';
 import '../assets/styles/VaccinationForm.css';
 
 const BookTicketForm = (props) => {
-    const { dataCallback } = props
+    // const { dataCallback } = props
 
     const [fromdropdownOpen, setOpen] = useState(false)
     const fromtoggle = () => setOpen(!fromdropdownOpen)
@@ -21,13 +21,13 @@ const BookTicketForm = (props) => {
     const history = useHistory();
 
     const handleSubmit = () => {
-       
-            if (from === 'Select From Location' | to === 'Select To Location' | name === '' | CNIC === '' | passportno === '') {
-                alert('Please fill all fields')
-            }
-            else {
-                history.push("/proof", { Name: name, CNIC: CNIC, Passport: passportno, from: from, to: to })
-            }
+
+        if (from === 'Select From Location' | to === 'Select To Location' | name === '' | CNIC === '' | passportno === '') {
+            alert('Please fill all fields')
+        }
+        else {
+            history.push("/proof", { Name: name, CNIC: CNIC, Passport: passportno, from: from, to: to })
+        }
     }
 
     return (
@@ -78,7 +78,7 @@ const BookTicketForm = (props) => {
                 <Col md={4}>
                     <FormGroup>
                         <Label for="examplePassword">Passport #</Label>
-                        <Input type="text" name="dosage" className="inputField rounded-pill"  id="examplePassword" onChange={(e) => setPassport(e.target.value)} placeholder="Passport" />
+                        <Input type="text" name="dosage" className="inputField rounded-pill" id="examplePassword" onChange={(e) => setPassport(e.target.value)} placeholder="Passport" />
                     </FormGroup>
                 </Col>
             </Row>
