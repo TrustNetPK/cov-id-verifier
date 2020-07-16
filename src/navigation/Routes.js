@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import MainContainer from '../containers/MainContainer'
 import HeaderComponent from '../components/HeaderComponent'
 import PIAHeaderComponent from '../components/PIAHeaderComponent'
+import CAAHeaderComponent from '../components/CAAHeaderComponent'
 import FooterComponent from '../components/FooterComponent'
 import LoginContainer from '../containers/LoginContainer'
 import VaccineVerification from '../containers/VerifyContainer'
@@ -15,7 +16,15 @@ import OnLocationContainer from '../containers/OnLocationContainer'
 import VaccinationContainer from '../containers/VaccinationContainer'
 
 const PrivateRoute = ({ component, ...options }) => {
-    const headerComponent = localStorage.getItem("demo") === "PIA" ? PIAHeaderComponent : HeaderComponent;
+    var headerComponent = undefined
+    if (localStorage.getItem("demo") === "PIA") {
+        headerComponent = PIAHeaderComponent
+    } else if (localStorage.getItem("demo") === "CAA") {
+        headerComponent = CAAHeaderComponent
+    } else {
+        headerComponent = HeaderComponent
+    }
+    // const headerComponent = localStorage.getItem("demo") === "PIA" ? PIAHeaderComponent : HeaderComponent;
     const finalComponent = Auth.getAuth() ? component : NoAuthContainer;
     return (
         <div>
@@ -26,7 +35,15 @@ const PrivateRoute = ({ component, ...options }) => {
 };
 
 const HeaderRoute = ({ component, bodycomponent, ...options }) => {
-    const finalComponent = localStorage.getItem("demo") === "PIA" ? PIAHeaderComponent : HeaderComponent;
+    // const finalComponent = localStorage.getItem("demo") === "PIA" ? PIAHeaderComponent : HeaderComponent;
+    var finalComponent = undefined
+    if (localStorage.getItem("demo") === "PIA") {
+        finalComponent = PIAHeaderComponent
+    } else if (localStorage.getItem("demo") === "CAA") {
+        finalComponent = CAAHeaderComponent
+    } else {
+        finalComponent = HeaderComponent
+    }
     return (
         <div>
             <Route component={finalComponent} />

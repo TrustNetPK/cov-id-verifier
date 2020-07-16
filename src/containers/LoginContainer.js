@@ -16,7 +16,7 @@ function LoginContainer(props) {
 
 	const handleSubmit = () => {
 		console.log(email, password)
-		if (email === 'verifier@vaccify.pk' && password === 'verify123') {
+		if (email === 'verifier@vaccify.pk' && password === 'admin') {
 			Auth.authenticate();
 			props.history.replace('/onlocation')
 		}
@@ -26,13 +26,14 @@ function LoginContainer(props) {
 	}
 
 	return (
-		<div className="Root" style={{ backgroundColor: '#FCF8F7' }}>
+		<div className="Root" style={{ backgroundColor: '#e8f4f8' }}>
 			<Container className="App">
 				<div>
 					<img src={animic1} alt="Animation" />
 				</div>
 				<Form className="form">
 					<h2 className="text-center">Log In</h2>
+					<p className="text-center" style={{ color: '#808080', fontSize: '10px' }}>If you need access to Vaccify verifier demo, email us at <span style={{ color: '#800000' }}>support@trust.net.pk</span></p>
 					<Col>
 						<FormGroup>
 							<Label className="mt-2">Email</Label>
@@ -42,7 +43,7 @@ function LoginContainer(props) {
 									name="email"
 									id="Email"
 									onChange={(e) => setEmail(e.target.value)}
-									placeholder="myemail@email.com"
+									placeholder="email@vaccify.pk"
 								/>
 							</InputGroup>
 
@@ -56,12 +57,12 @@ function LoginContainer(props) {
 								name="password"
 								id="Password"
 								onChange={(e) => setPassword(e.target.value)}
-								placeholder="********"
+								placeholder="••••••••••••"
 							/>
 						</FormGroup>
 					</Col>
 					<div className="text-center ">
-						<Button className="mt-2" outline color="success" size="lg" onClick={handleSubmit} >Submit</Button>
+						<Button className="mt-2" color="primary" size="lg" onClick={handleSubmit} >Submit</Button>
 					</div>
 
 				</Form>
