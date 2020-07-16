@@ -1,9 +1,13 @@
 # COV-ID Verifier Application
 A front-end web application to verify COVID-19 vaccination digital verifiable credential.
 
+# Screenshots
+
+![visual](verifier-visual.png)
+
 # How to run
 ```
-git clone https://github.com/TrustNetPK/cov-id-verifier-demo.git
+git clone https://github.com/TrustNetPK/cov-id-verifier.git
 cd cov-id-verifier-demo
 npm install
 npm start
