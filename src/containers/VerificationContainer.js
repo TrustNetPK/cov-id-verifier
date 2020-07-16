@@ -1,16 +1,27 @@
-import { Col, Row, FormGroup, Input, Container } from 'reactstrap';
+import { Button, Col, Row, FormGroup, Input, Container } from 'reactstrap';
 import React from 'react';
+import Auth from '../helpers/Auth'
+import { useHistory } from 'react-router-dom'
 
 import '../assets/styles/LoginContainer.css'
 
-import BannerImage from '../assets/resources/bannerimg.png'
+import Success from '../assets/images/success.png'
 const VerificationContainer = (props) => {
+
+    const history = useHistory();
+
+    const handleLogout = () => {
+        Auth.signout();
+        history.replace('/')
+
+    }
+
     return (
         <Container fluid className="float-center ml-5 pt-5  mt-4 App">
             <Row form >
 
                 <Col md={4}>
-                    <h5 className="mb-5 pb-4 mt-2">Passenger Ticket Information</h5>
+                    <h5 className="mb-5 pb-4 mt-2">Passenger & Vaccine Information</h5>
                     <FormGroup>
                         <Input type="text" name="name" value={props.location.state.Name} id="exampleEmail" placeholder="Name" disabled />
                     </FormGroup>
@@ -26,9 +37,16 @@ const VerificationContainer = (props) => {
                 </Col>
 
                 <Col md={6} className="text-center">
-                    <img className="text-center" src={BannerImage} alt="Logo" />
-                    <h4 className="ml-5 pb-4 mt-5">Vaccination Verified Ticket Booking Verified Successfully</h4>
-                    <p className="ml-5 pb-4 mt-2">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                    <img className="text-center w-25" src={Success} alt="Logo" />
+                    <h4 className="ml-md-5 pb-4 mt-4">
+                        Vaccination Certificate Has Been Verified Successfully
+          </h4>
+                    <p className="ml-md-5 pb-4 mt-2">
+                        The Passenger's digital vaccination certificate has been successfuly verified, Please verify their personal information from the proof and validate it against their travel document.
+          </p>
+                    <div className="text-center ">
+                        <Button className="mt-2" color="primary" size="lg" onClick={handleLogout} >Go Back</Button>
+                    </div>
                 </Col>
             </Row>
         </Container>);

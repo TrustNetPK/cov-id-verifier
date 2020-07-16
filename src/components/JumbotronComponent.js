@@ -11,32 +11,32 @@ const JumbotronComponent = () => {
 
   return (
     <header>
-      <div className="container-fluid text-center" >
-        <div className="row mt-5 pt-3" >
+      <div className="pt-5 container-fluid text-center" >
+        <div className="row mt-5 pt-5" >
           <div className="col-md-7 mt-5 pt-5 col-sm-12">
-            <h1 className="mt-5">Travel Easy with <br />Vaccination Certificates!</h1>
-            <p>This is what we believe at Vaccify.</p>
+            <h1 className="mt-5">Travel Carefree with <br />Vaccination Certificates!</h1>
+            <p>Vaccination certificates made reliable and easy.</p>
             <p className="lead">
-              We enable you to hold digital verifiable immunity certificates in your mobile.</p>
-            <Button className="mt-5" outline size="lg" color="primary" onClick={() => {
-              localStorage.setItem('demo', "Flight");
+              This demo shows how an institution can verify a digital immunity certificates of a person either online or face-2-face.</p>
+            <Button className="mt-5" size="lg" color="success" onClick={() => {
+              localStorage.setItem('demo', "PIA");
               VaccinationStatus.isVaccinated(false)
               history.push('/bookticket')
             }}>Try Online Booking Demo</Button>
 
-            <Button className="mt-5 ml-3" outline color="primary" size="lg" onClick={() => {
+            <Button className="mt-5 ml-3" color="primary" size="lg" onClick={() => {
               let auth_login = Auth.getAuth();
               if (auth_login == null) {
-                localStorage.setItem('demo', "PIA");
+                localStorage.setItem('demo', "CAA");
                 history.push('/login')
               }
               else {
-                localStorage.setItem('demo', "Flight");
+                localStorage.setItem('demo', "CAA");
                 history.push('/onlocation')
               }
             }}>Try On Location Demo</Button>
           </div>
-          <div class="col-md-5 mt-2 p-5 col-sm-12">
+          <div class="col-md-5 mt-4 p-5 col-sm-12">
             <img src={bannerImg} alt="CovidPerson" />
           </div>
         </div>

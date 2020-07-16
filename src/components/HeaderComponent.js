@@ -13,8 +13,7 @@ import { useHistory } from 'react-router-dom'
 import Auth from '../helpers/Auth'
 
 import useWindowDimensions from '../helpers/useWindowDimensions';
-import CAALogo from '../assets/images/caa.png';
-import AgaKhanMiniLogo from '../assets/images/aga-khan-mini-transparent.png';
+import VaccifyLogo from '../assets/images/brand-logo-color.png';
 
 const HeaderComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,16 +46,16 @@ const HeaderComponent = () => {
         style={{ boxShadow: '0 0px 50px rgba(0, 0, 0, 0.2)' }}>
         <NavbarBrand href="/">
           {width > 500 ? (
-            <img src={CAALogo} alt="aga-khan-logo" style={{ marginLeft: '17px', width: '100px', height: '50px' }} />
+            <img src={VaccifyLogo} alt="aga-khan-logo" style={{ marginLeft: '17px', width: '100px', height: '40px' }} />
           ) : (
-              <img src={AgaKhanMiniLogo} alt="aga-khan-logo" style={{ width: '50px' }} />
+              <img src={VaccifyLogo} alt="aga-khan-logo" style={{ width: '60px' }} />
             )}</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
               <NavLink href="https://github.com/TrustNetPK">
-                <Button color="dark" className="px-4">GitHub</Button></NavLink>
+                <Button color="dark" className="px-4">Github</Button></NavLink>
             </NavItem>
             {Auth.getAuth() ? <NavItem>
               <NavLink style={{ cursor: 'pointer' }}>
@@ -66,9 +65,9 @@ const HeaderComponent = () => {
               </NavLink>
             </NavItem> : <NavItem>
                 <NavLink style={{ cursor: 'pointer' }}>
-                  <Button color="primary" className="px-4" onClick={handleLogin}>
+                  {/* <Button color="primary" className="px-4" onClick={handleLogin}>
                     Log In
-                  </Button>
+                  </Button> */}
                 </NavLink>
               </NavItem>}
           </Nav>

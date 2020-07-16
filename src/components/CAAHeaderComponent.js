@@ -13,7 +13,7 @@ import { useHistory } from 'react-router-dom'
 import Auth from '../helpers/Auth'
 
 import useWindowDimensions from '../helpers/useWindowDimensions';
-import PIALogo from '../assets/images/pia.png';
+import CAALogo from '../assets/images/caa.png';
 
 const HeaderComponent = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -45,9 +45,9 @@ const HeaderComponent = () => {
                 style={{ boxShadow: '0 0px 50px rgba(0, 0, 0, 0.2)' }}>
                 <NavbarBrand href="/">
                     {width > 500 ? (
-                        <img src={PIALogo} alt="pia-logo" style={{ width: '170px', height: '50px' }} />
+                        <img src={CAALogo} alt="caa-logo" style={{ width: '120px', height: '50px' }} />
                     ) : (
-                            <img src={PIALogo} alt="pia-logo" style={{ width: '50px' }} />
+                            <img src={CAALogo} alt="caa-logo" style={{ width: '50px' }} />
                         )}</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
@@ -59,7 +59,7 @@ const HeaderComponent = () => {
                         {Auth.getAuth() ? <NavItem>
                             <NavLink style={{ cursor: 'pointer' }}>
                                 <Button color="danger" className="px-4" onClick={handleLogout}>
-                                    Log Out
+                                    Log out
                 </Button>
                             </NavLink>
                         </NavItem> : <NavItem>

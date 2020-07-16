@@ -76,8 +76,10 @@ const BookTicketForm = () => {
                                 {to}
                             </DropdownToggle>
                             <DropdownMenu value={to} name="toLocations" >
-                                <DropdownItem name="ain" onClick={(e) => { setTo(e.target.innerText) }} >Al Ain International Airport (AAN)</DropdownItem>
+                                <DropdownItem name="dxb" onClick={(e) => { setTo(e.target.innerText) }} >Dubai International Airport (DXB)</DropdownItem>
                                 <DropdownItem name="jakartra" onClick={(e) => { setTo(e.target.innerText) }} >Jakarta - Soekarno-Hatta (CGK)</DropdownItem>
+                                <DropdownItem name="hel" onClick={(e) => { setTo(e.target.innerText) }} >Helsinki International Airport (HEL)</DropdownItem>
+                                <DropdownItem name="lgw" onClick={(e) => { setTo(e.target.innerText) }} >London Gatwick (LGW)</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     }
@@ -87,8 +89,10 @@ const BookTicketForm = () => {
                                 {to}
                             </DropdownToggle>
                             <DropdownMenu value={to} name="toLocations" >
-                                <DropdownItem name="ain" onClick={(e) => { setTo(e.target.innerText) }} >Al Ain International Airport (AAN)</DropdownItem>
+                                <DropdownItem name="dxb" onClick={(e) => { setTo(e.target.innerText) }} >Dubai International Airport (DXB)</DropdownItem>
                                 <DropdownItem name="jakartra" onClick={(e) => { setTo(e.target.innerText) }} >Jakarta - Soekarno-Hatta (CGK)</DropdownItem>
+                                <DropdownItem name="hel" onClick={(e) => { setTo(e.target.innerText) }} >Helsinki International Airport (HEL)</DropdownItem>
+                                <DropdownItem name="lgw" onClick={(e) => { setTo(e.target.innerText) }} >London Gatwick (LGW)</DropdownItem>
                             </DropdownMenu>
                         </Dropdown>
                     }
