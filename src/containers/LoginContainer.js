@@ -18,7 +18,7 @@ function LoginContainer(props) {
 		console.log(email, password)
 		if (email === 'verifier@vaccify.pk' && password === 'verify123') {
 			Auth.authenticate();
-			props.history.replace('/bookticket')
+			props.history.replace('/onlocation')
 		}
 		else {
 			alert('Please login with correct credentials')
@@ -61,7 +61,7 @@ function LoginContainer(props) {
 						</FormGroup>
 					</Col>
 					<div className="text-center ">
-						<Button className="mt-2" outline color="primary" size="lg" onClick={handleSubmit} >Submit</Button>
+						<Button className="mt-2" outline color="success" size="lg" onClick={handleSubmit} >Submit</Button>
 					</div>
 
 				</Form>

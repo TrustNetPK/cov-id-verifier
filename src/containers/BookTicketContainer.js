@@ -4,7 +4,6 @@ import BookTicketForm from '../components/BookTicketForm';
 import VaccineVerificationContainer from './VaccineVerificationContainer';
 
 
-
 function BookTicketContainer() {
 	const [verifyvaccine, setVaccine] = useState(true)
 	const [from, setFrom] = useState('Select From Location')
@@ -17,7 +16,7 @@ function BookTicketContainer() {
 	const [expiry, setExpiry] = useState('Expiry')
 	const [vaccName, setVaccName] = useState('Vaccination Name')
 	return (
-		<Container className="pt-2 mt-2 mb-5">
+		<Container className="pt-2 mt-2 mb-5 ">
 			{verifyvaccine && <BookTicketForm From={from} To={to} PersonName={name} Passport={passportno} Cnic={CNIC} Name={vaccName} Expiry={expiry} Batch={batch} Dosage={dosage} dataCallback={(props) => {
 				setFrom(props.From)
 				setTo(props.To)

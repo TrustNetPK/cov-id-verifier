@@ -19,15 +19,19 @@ const JumbotronComponent = () => {
             <p className="lead">
               We enable you to hold digital verifiable immunity certificates in your mobile.</p>
             <Button className="mt-5" outline size="lg" color="primary" onClick={() => {
+              localStorage.setItem('demo', "Flight");
               VaccinationStatus.isVaccinated(false)
               history.push('/bookticket')
             }}>Try Online Booking Demo</Button>
+
             <Button className="mt-5 ml-3" outline color="primary" size="lg" onClick={() => {
               let auth_login = Auth.getAuth();
               if (auth_login == null) {
+                localStorage.setItem('demo', "PIA");
                 history.push('/login')
               }
               else {
+                localStorage.setItem('demo', "Flight");
                 history.push('/onlocation')
               }
             }}>Try On Location Demo</Button>
