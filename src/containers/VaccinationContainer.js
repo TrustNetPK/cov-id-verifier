@@ -15,7 +15,7 @@ function VaccinationContainer(props) {
         else {
             SubmitText("Verify your vaccination")
         }
-    }, []);
+    }, [getSubmit, props]);
     const handleVaccination = () => {
         // console.log("VaccinationContainer" + JSON.stringify(props))
         // console.log("VaccinationContainer" + props.PersonName)
