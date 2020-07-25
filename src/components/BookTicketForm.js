@@ -6,17 +6,20 @@ import '../assets/styles/VaccinationForm.css'
 
 const BookTicketForm = () => {
     // const { dataCallback } = props
+    var cdate = new Date();
+    cdate.setDate(cdate.getDate() + 7);
     const [fromdropdownOpen, setOpen] = useState(false)
     const fromtoggle = () => setOpen(!fromdropdownOpen)
 
     const [todropdownOpen, setoOpen] = useState(false)
     const totoggle = () => setoOpen(!todropdownOpen)
 
-    const [from, setFrom] = useState('Select From Location')
-    const [to, setTo] = useState('Select To Location')
-    const [name, setName] = useState('')
-    const [CNIC, setCNIC] = useState('')
-    const [passportno, setPassport] = useState('')
+    const [from, setFrom] = useState('Lahore - Allama Iqbal Intl. (LHE)')
+    const [to, setTo] = useState('London Gatwick (LGW)')
+    const [departureDate, setDepartureDate] = useState(new Date().toISOString().substring(0, 10))
+    const [returnDate, setReturnDate] = useState(cdate.toISOString().substring(0, 10))
+    const [passenger, setPassenger] = useState('1 Adult, 0 Child')
+    const [cabin, setCabin] = useState('Economy')
     const history = useHistory();
 
 
@@ -24,12 +27,12 @@ const BookTicketForm = () => {
 
     const handleSubmit = () => {
 
-        if (from === 'Select From Location' | to === 'Select To Location' | name === '' | CNIC === '' | passportno === '') {
+        if (from === 'Select From Location' | to === 'Select To Location' | departureDate === '' | returnDate === '' | passenger === '') {
             alert('Please fill all fields')
         }
         else {
             //  console.log(passportno + name)
-            history.push("/vaccineverification", { PersonName: name, CNIC: CNIC, Passport: passportno, from: from, to: to })
+            history.push("/vaccineverification", { departureDate: departureDate, returnDate: returnDate, passenger: passenger, from: from, to: to, cabin: cabin })
         }
     }
 
@@ -37,6 +40,24 @@ const BookTicketForm = () => {
         <Form className="text-center mt-5 pt-5 FormBox align-self-center" >
             <h1 className={` ${localStorage.getItem("demo") === "PIA" ? 'className="mb-5 pb-4 mt-2 piaheader' : 'className="mb-5 pb-4 mt-2 header'}`}
             >Fill your flight reservation info</h1>
+
+            <br />
+            <FormGroup tag="fieldset">
+                <FormGroup check sm={2}>
+                    <Label check>
+                        <Input type="radio" defaultChecked name="radio1" />{' '}
+            Return
+
+          </Label>
+
+                    <Label check sm={2}>
+                        <Input type="radio" disabled name="radio1" />{' '}
+            One way
+          </Label>
+                </FormGroup>
+            </FormGroup>
+
+            <br />
             <Row form>
                 <Col md={5}>
                     {localStorage.getItem("demo") === "PIA" &&
@@ -102,21 +123,53 @@ const BookTicketForm = () => {
             <Row form>
                 <Col md={4}>
                     <FormGroup>
-                        <Label for="exampleEmail">Name</Label>
-                        <Input type="text" name="name" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`}
-                            id="exampleEmail" onChange={(e) => setName(e.target.value)} placeholder="Name" />
+                        <Label for="departure">Departure Date</Label>
+                        <Input type="date" name="date" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`}
+                            id="departure" onChange={(e) => setDepartureDate(e.target.value)} placeholder="" value={departureDate} />
                     </FormGroup>
                 </Col>
                 <Col md={4}>
                     <FormGroup>
-                        <Label for="examplePassword">CNIC #</Label>
-                        <Input type="text" name="cnic" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} id="examplePassword" onChange={(e) => setCNIC(e.target.value)} placeholder="CNIC" />
+                        {/* <Label for="examplePassword">CNIC #</Label> */}
+                        {/* <Input type="text" name="cnic" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} id="examplePassword" onChange={(e) => setCNIC(e.target.value)} placeholder="CNIC" /> */}
                     </FormGroup>
                 </Col>
                 <Col md={4}>
                     <FormGroup>
-                        <Label for="examplePassword">Passport #</Label>
-                        <Input type="text" name="dosage" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} id="examplePassword" onChange={(e) => setPassport(e.target.value)} placeholder="Passport" />
+                        <Label for="returndate">Return Date</Label>
+                        <Input type="date" name="returndate" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} id="examplePassword" onChange={(e) => setReturnDate(e.target.value)} placeholder="" value={returnDate} />
+                    </FormGroup>
+                </Col>
+            </Row>
+            <Row form>
+                <Col md={4}>
+                    <FormGroup>
+                        <Label for="passenger">Passenger(s)</Label>
+                        <Input type="select" name="passenger" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`}
+                            id="passenger" onChange={(e) => setPassenger(e.target.value)} placeholder="" value={passenger} >
+                            <option>1 Adult, 0 Child</option>
+                            <option>2 Adult, 0 Child</option>
+                            <option>2 Adult, 1 Child</option>
+                            <option>2 Adult, 2 Child</option>
+                            <option>2 Adult, 3 Child</option>
+                        </Input>
+                    </FormGroup>
+                </Col>
+                <Col md={4}>
+                    <FormGroup>
+                        {/* <Label for="examplePassword">CNIC #</Label> */}
+                        {/* <Input type="text" name="cnic" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} id="examplePassword" onChange={(e) => setCNIC(e.target.value)} placeholder="CNIC" /> */}
+                    </FormGroup>
+                </Col>
+                <Col md={4}>
+                    <FormGroup>
+                        <Label for="cabin">Cabin</Label>
+                        <Input type="select" name="cabin" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} id="examplePassword" onChange={(e) => setCabin(e.target.value)} placeholder="" value={cabin} >
+                            <option>Economy</option>
+                            <option>Executive Economy</option>
+                            <option>Business</option>
+
+                        </Input>
                     </FormGroup>
                 </Col>
             </Row>
