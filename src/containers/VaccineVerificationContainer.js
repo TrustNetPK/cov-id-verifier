@@ -1,27 +1,24 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Container, Col } from 'reactstrap'
 import QRComponent from '../components/QRComponent'
-import VaccinationStatus from '../helpers/VaccinationStatus'
+// import VaccinationStatus from '../helpers/VaccinationStatus'
 
 
 
 function VaccineVerificationContainer(props) {
-    const [isVaccianted, checkVaccine] = useState(false)
+
     const { dataCallback } = props
 
     useEffect(() => {
         setTimeout(() => {
-            checkVaccine(true)
-            VaccinationStatus.isVaccinated(isVaccianted)
             dataCallback(props)
-            // history.push('/bookticket', props.location.state)
         }, 5000);
-
     });
+
     return (
-        <Container className="text-center justify-content-center pt-2 mt-1">
+        <Container className="text-center justify-content-center pt-5 mt-5">
             <h5 className="pb-4 ">Show this QR to the passenger vaccination holder, Get it scanned by their phone</h5>
-            <Container >
+            <Container>
                 <Col>
                     <QRComponent value={JSON.stringify(props)} />
                 </Col>
@@ -29,10 +26,25 @@ function VaccineVerificationContainer(props) {
         </Container>
     )
 }
+
 VaccineVerificationContainer.defaultProps = {
-    Batch: "0057",
-    Name: "COVID 19 Vaccine",
-    Expiry: "01/01/2022",
-    Dosage: "2 mm"
+    vacName: "SARS-CoV2",
+    manufacturer: "Moderna",
+    batch: "GHE-343r4",
+    dose: "0.2",
+    unit: "ml",
+    validTill: "12-31-2030",
+    nextBoosterDate: "12-31-2030",
+    vaccinatorName: "Dr. Zeeshan Ali",
+    vaccinatorOrg: "WeCare Hospital",
+    firstname: "Ali",
+    lastname: "Ahsan",
+    gender: "Male",
+    dob: "1990-02-21",
+    nationality: "Pakistani",
+    doctype: "Passport",
+    docID: "CV83831643",
+
 }
+
 export default VaccineVerificationContainer
