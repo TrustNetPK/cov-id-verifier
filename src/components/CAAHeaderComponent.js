@@ -45,7 +45,7 @@ const HeaderComponent = () => {
                 style={{ boxShadow: '0 0px 50px rgba(0, 0, 0, 0.2)' }}>
                 <NavbarBrand href="/">
                     {width > 500 ? (
-                        <img src={CAALogo} alt="caa-logo" style={{ width: '120px', height: '50px' }} />
+                        <img src={CAALogo} alt="caa-logo" style={{ width: '60px', height: '50px' }} />
                     ) : (
                             <img src={CAALogo} alt="caa-logo" style={{ width: '50px' }} />
                         )}</NavbarBrand>
