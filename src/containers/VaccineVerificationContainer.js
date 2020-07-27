@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Container, Col } from 'reactstrap'
 import QRComponent from '../components/QRComponent'
 import services from '../services.js'
-import axios from 'axios';
+
 // import VaccinationStatus from '../helpers/VaccinationStatus'
 
 
@@ -11,6 +11,7 @@ function VaccineVerificationContainer(props) {
 
     const { dataCallback } = props
     const [QRData, setQRData] = useState("{name:safi}")
+    const [connection_id, setConnectionID] = useState(" ")
     const [onPageLoad, setLoad] = useState(true)
     //const [response, setResponse] = useState(null)
 
@@ -30,14 +31,34 @@ function VaccineVerificationContainer(props) {
                 var jsonData = JSON.parse(JSON.stringify(response.data))
                 myObject.type = "connection_proof"
                 myObject.data = {}
+                myObject.data.cred_type = "request"
+                myObject.data.vaccine_name = "request"
+                myObject.data.manufacturer = "request"
+                myObject.data.batch_no = "request"
+                myObject.data.dose = "request"
+                myObject.data.dose_unit = "request"
+                myObject.data.validate_from = "request"
+                myObject.data.validate_to = "request"
+                myObject.data.next_booster_date = "request"
+                myObject.data.vaccinator_org = "request"
+                myObject.data.vaccinator_did = "request"
+                myObject.data.vaccinator_name = "request"
+                myObject.data.vaccinator_org_loc = "request"
+                myObject.data.vaccinator_org_type = "request"
+                myObject.data.vaccinator_org_logo = "request"
                 myObject.data.first_name = "request"
                 myObject.data.last_name = "request"
-                myObject.data.cnic = "request"
+                myObject.data.dob = "request"
+                myObject.data.nationality = "request"
+                myObject.data.gender = "request"
+                myObject.data.accreditor_cred_def_id = "request"
+                myObject.data.id_doc_type = "request"
+                myObject.data.doc_id = "request"
                 myObject.org = {}
                 myObject.org.name = "Civil Aviation Authorities"
                 myObject.org.img = "IMG_URL"
                 myObject.invitation = jsonData.invitation
-                //setQRData(JSON.stringify(JSON.parse(JSON.stringify(myObject))))
+                setConnectionID(jsonData.connection_id)
                 setQRData(JSON.stringify(myObject))
 
 
@@ -53,15 +74,21 @@ function VaccineVerificationContainer(props) {
     }
 
     useEffect(() => {
-        if (onPageLoad) {
-            setLoad(false)
-            CreateConnectionInvite()
-        }
+        // if (onPageLoad) {
+        //     setLoad(false)
+        //     CreateConnectionInvite()
+        // }
 
-        // setTimeout(() => {
-        //     dataCallback(props)
-        // }, 5000);
-    });
+        const interval = setInterval(() => {
+            console.log('This will run every 5 second!');
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
+    // setTimeout(() => {
+    //     //dataCallback(props)
+    // }, 5000);
+
 
     return (
         <Container className="text-center justify-content-center pt-5 mt-5">
