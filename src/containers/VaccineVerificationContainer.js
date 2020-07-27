@@ -104,10 +104,23 @@ function VaccineVerificationContainer(props) {
 }
 
 VaccineVerificationContainer.defaultProps = {
-    Batch: "0057",
-    Name: "COVID 19 Vaccine",
-    Expiry: "01/01/2022",
-    Dosage: "2 mm"
+    vacName: "SARS-CoV2",
+    manufacturer: "Moderna",
+    batch: "GHE-343r4",
+    dose: "0.2",
+    unit: "ml",
+    validTill: "12-31-2030",
+    nextBoosterDate: "12-31-2030",
+    vaccinatorName: "Dr. Zeeshan Ali",
+    vaccinatorOrg: "WeCare Hospital",
+    firstname: "Ali",
+    lastname: "Ahsan",
+    gender: "Male",
+    dob: "1990-02-21",
+    nationality: "Pakistani",
+    doctype: "Passport",
+    docID: "CV83831643",
+
 }
 
 export default VaccineVerificationContainer
