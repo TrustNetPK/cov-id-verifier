@@ -4,13 +4,14 @@ import QRComponent from '../components/QRComponent'
 import services from '../services.js'
 import axios from 'axios';
 // import VaccinationStatus from '../helpers/VaccinationStatus'
-
+import '../assets/styles/LoginContainer.css'
 
 
 function VaccineVerificationContainer(props) {
 
     const { dataCallback } = props
     const [QRData, setQRData] = useState("{name:safi}")
+    const [message, setMessage] = useState("")
     const [connection_id, setConnectionID] = useState("")
     const [invitationState, setInvitationState] = useState("Nil")
     const [onPageLoad, setLoad] = useState(true)
@@ -100,6 +101,7 @@ function VaccineVerificationContainer(props) {
         };
         axios.get('/connections/' + connection_id, { headers }).then((response) => {
             var jsonData = JSON.parse(JSON.stringify(response.data))
+            setMessage("Accepting the invitation of yours ...")
             setInvitationState(jsonData.state)
             console.log("Setting invitationState" + invitationState);
 
@@ -110,6 +112,7 @@ function VaccineVerificationContainer(props) {
     }
 
     const VerifierSendProofRequest = async () => {
+        setMessage("Sending Request to Verify the Credentials ...")
         var headers = {
             'Content-Type': 'application/json;charset=utf-8',
             'Access-Control-Allow-Origin': '*',
@@ -233,6 +236,7 @@ function VaccineVerificationContainer(props) {
     }
 
     const VerifierVerifyProof = async () => {
+        setMessage("Verifying the Credentials ...")
         var headers = {
             'Content-Type': 'application/json;charset=utf-8',
             'Access-Control-Allow-Origin': '*',
@@ -277,6 +281,7 @@ function VaccineVerificationContainer(props) {
         if (connection_id === "" && onPageLoad) {
             setLoad(false)
             CreateConnectionInvite()
+            setMessage("Waiting for Accepting Connection ...")
         }
 
         console.log("Connection ID = " + connection_id)
@@ -330,10 +335,12 @@ function VaccineVerificationContainer(props) {
 
     return (
         <Container className="text-center justify-content-center pt-5 mt-5">
-            <h5 className="pb-4 ">Show this QR to the passenger vaccination holder, Get it scanned by their phone</h5>
+            {(invitationState === "invitation") && <h5 className="pb-4 ">Show this QR to the passenger vaccination holder, Get it scanned by their phone</h5>}
             <Container>
                 <Col>
-                    <QRComponent value={QRData} />
+                    {(invitationState === "Nil" && <div className="vertical-center">Please Wait ...</div>)}
+                    {(invitationState === "invitation") && <QRComponent value={QRData} />}
+                    {(invitationState === "response") && <div className="vertical-center">{message}</div>}
                 </Col>
             </Container>
         </Container>
