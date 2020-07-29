@@ -26,10 +26,10 @@ const HeaderComponent = () => {
   //   setIsOpen(false)
   // }, [window.location.pathname]);
 
-  const handleLogin = () => {
-    localStorage.setItem('demo', "PIA");
-    history.push('/login')
-  }
+  // const handleLogin = () => {
+  //   localStorage.setItem('demo', "PIA");
+  //   history.push('/login')
+  // }
 
   const handleLogout = () => {
     Auth.signout();

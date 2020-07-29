@@ -26,9 +26,9 @@ const HeaderComponent = () => {
     //   setIsOpen(false)
     // }, [window.location.pathname]);
 
-    const handleLogin = () => {
-        history.push('/login')
-    }
+    // const handleLogin = () => {
+    //     history.push('/login')
+    // }
 
     const handleLogout = () => {
         Auth.signout();
