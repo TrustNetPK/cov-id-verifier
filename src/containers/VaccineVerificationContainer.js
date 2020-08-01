@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Col } from 'reactstrap'
+import { Container, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap'
 import QRComponent from '../components/QRComponent'
 import services from '../services.js'
 import axios from 'axios';
+import { API_SECRET } from '../constants'
+import { useHistory } from 'react-router-dom'
+import Auth from '../helpers/Auth'
 // import VaccinationStatus from '../helpers/VaccinationStatus'
 import '../assets/styles/LoginContainer.css'
 
+export var requestDocID = '';
 
 function VaccineVerificationContainer(props) {
 
     const { dataCallback } = props
+    const history = useHistory();
     const [QRData, setQRData] = useState("{name:safi}")
     const [message, setMessage] = useState("")
     const [connection_id, setConnectionID] = useState("")
@@ -17,7 +22,7 @@ function VaccineVerificationContainer(props) {
     const [onPageLoad, setLoad] = useState(true)
     const [sendProof, setProofRequest] = useState(true)
     const [presentation_exchange_id, setPresentationExchangeID] = useState("")
-    const [credential_id, setCredId] = useState("4kfmXB6jB2jB5Knt7uskb6:3:CL:1699:vpx29pm44")
+    // const [credential_id, setCredId] = useState("4kfmXB6jB2jB5Knt7uskb6:3:CL:1699:vpx29pm44")
 
     //Vaccination Attributes
     const [verifyvaccine, setVaccine] = useState(false)
@@ -38,6 +43,35 @@ function VaccineVerificationContainer(props) {
     const [nextBoosterDate, setNextBoosterDate] = useState('')
     const [vaccinatorName, setVaccinatorName] = useState('')
     //const [response, setResponse] = useState(null)
+
+
+    const {
+        className
+    } = props;
+    const [modal, setModal] = useState(true);
+    const [inputDocID, setInputDocID] = useState('')
+    const dialogKeyboard = false
+
+    const toggle = () => setModal(!modal);
+    const closeModal = () => {
+        if (inputDocID !== '') {
+            requestDocID = inputDocID
+            if (connection_id === "") {
+                setLoad(false)
+                CreateConnectionInvite()
+                setMessage("Waiting for Accepting Connection ...")
+            }
+
+            // console.log("Connection ID = " + connection_id)
+            // console.log("State = " + (invitationState))
+            toggle();
+        }
+    }
+
+    const exit = () => {
+        Auth.signout();
+        history.replace('/')
+    }
 
     const CreateConnectionInvite = async () => {
         try {
@@ -74,11 +108,9 @@ function VaccineVerificationContainer(props) {
                 myObject.org.name = "Civil Aviation Authorities"
                 myObject.org.img = "IMG_URL"
                 myObject.invitation = jsonData.invitation
-                console.log("Invitation Link: " + JSON.stringify(jsonData.inviatation))
+                // console.log("Invitation Link: " + JSON.stringify(jsonData.inviatation))
                 setConnectionID(jsonData.connection_id)
                 setQRData(JSON.stringify(myObject))
-
-
             })
                 .catch(function (error) {
                     console.log(error);
@@ -97,13 +129,13 @@ function VaccineVerificationContainer(props) {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": "secret"
+            "X-API-Key": `${API_SECRET}`
         };
         axios.get('/connections/' + connection_id, { headers }).then((response) => {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             setMessage("Accepting the invitation of yours ...")
             setInvitationState(jsonData.state)
-            console.log("Setting invitationState" + invitationState);
+            // console.log("Setting invitationState" + invitationState);
 
         })
             .catch(function (error) {
@@ -119,7 +151,7 @@ function VaccineVerificationContainer(props) {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": "secret"
+            "X-API-Key": `${API_SECRET}`
         };
         var proofRequestObject = {}
         proofRequestObject.connection_id = connection_id
@@ -129,99 +161,99 @@ function VaccineVerificationContainer(props) {
         proofRequestObject.proof_request.requested_attributes = {}
         proofRequestObject.proof_request.requested_attributes.attr1_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr1_referent.name = "cred_type"
-        proofRequestObject.proof_request.requested_attributes.attr1_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr1_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr2_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr2_referent.name = "vaccine_name"
-        proofRequestObject.proof_request.requested_attributes.attr2_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr2_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr3_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr3_referent.name = "manufacturer"
-        proofRequestObject.proof_request.requested_attributes.attr3_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr3_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr4_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr4_referent.name = "batch_no"
-        proofRequestObject.proof_request.requested_attributes.attr4_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr4_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr5_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr5_referent.name = "dose"
-        proofRequestObject.proof_request.requested_attributes.attr5_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr5_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr6_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr6_referent.name = "dose_unit"
-        proofRequestObject.proof_request.requested_attributes.attr6_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr6_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr7_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr7_referent.name = "validate_from"
-        proofRequestObject.proof_request.requested_attributes.attr7_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr7_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr8_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr8_referent.name = "validate_to"
-        proofRequestObject.proof_request.requested_attributes.attr8_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr8_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr9_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr9_referent.name = "next_booster_date"
-        proofRequestObject.proof_request.requested_attributes.attr9_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr9_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr10_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr10_referent.name = "vaccinator_org"
-        proofRequestObject.proof_request.requested_attributes.attr10_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr10_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr11_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr11_referent.name = "vaccinator_did"
-        proofRequestObject.proof_request.requested_attributes.attr11_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr11_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr12_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr12_referent.name = "vaccinator_name"
-        proofRequestObject.proof_request.requested_attributes.attr12_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr12_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr13_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr13_referent.name = "vaccinator_org_loc"
-        proofRequestObject.proof_request.requested_attributes.attr13_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr13_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr14_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr14_referent.name = "vaccinator_org_type"
-        proofRequestObject.proof_request.requested_attributes.attr14_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr14_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr15_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr15_referent.name = "vaccinator_org_logo"
-        proofRequestObject.proof_request.requested_attributes.attr15_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr15_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr16_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr16_referent.name = "first_name"
-        proofRequestObject.proof_request.requested_attributes.attr16_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr16_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr17_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr17_referent.name = "last_name"
-        proofRequestObject.proof_request.requested_attributes.attr17_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr17_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr18_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr18_referent.name = "dob"
-        proofRequestObject.proof_request.requested_attributes.attr18_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr18_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr19_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr19_referent.name = "nationality"
-        proofRequestObject.proof_request.requested_attributes.attr19_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr19_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr20_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr20_referent.name = "gender"
-        proofRequestObject.proof_request.requested_attributes.attr20_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr20_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr21_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr21_referent.name = "accreditor_cred_def_id"
-        proofRequestObject.proof_request.requested_attributes.attr21_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr21_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr22_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr22_referent.name = "id_doc_type"
-        proofRequestObject.proof_request.requested_attributes.attr22_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr22_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_attributes.attr23_referent = {}
         proofRequestObject.proof_request.requested_attributes.attr23_referent.name = "doc_id"
-        proofRequestObject.proof_request.requested_attributes.attr23_referent.restrictions = [{ "cred_def_id": credential_id }]
+        proofRequestObject.proof_request.requested_attributes.attr23_referent.restrictions = [{ "cred_def_id": requestDocID }]
 
         proofRequestObject.proof_request.requested_predicates = {}
         var proof_request = JSON.stringify(proofRequestObject)
-        console.log(proof_request)
+        // console.log(proof_request)
 
         axios.post('/present-proof/send-request', proof_request, { headers }).then(function (response) {
             var jsonData = JSON.parse(JSON.stringify(response.data))
@@ -243,7 +275,7 @@ function VaccineVerificationContainer(props) {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": "secret"
+            "X-API-Key": `${API_SECRET}`
         };
         axios.post('/present-proof/records/' + presentation_exchange_id + '/verify-presentation', {}, { headers }).then(function (response) {
             var jsonData = JSON.parse(JSON.stringify(response.data))
@@ -278,18 +310,18 @@ function VaccineVerificationContainer(props) {
             });
     }
     useEffect(() => {
-        if (connection_id === "" && onPageLoad) {
-            setLoad(false)
-            CreateConnectionInvite()
-            setMessage("Waiting for Accepting Connection ...")
-        }
+        // if (connection_id === "" && onPageLoad) {
+        //     setLoad(false)
+        //     CreateConnectionInvite()
+        //     setMessage("Waiting for Accepting Connection ...")
+        // }
 
-        console.log("Connection ID = " + connection_id)
-        console.log("State = " + (invitationState))
+        // // console.log("Connection ID = " + connection_id)
+        // console.log("State = " + (invitationState))
 
 
         const interval = setInterval(() => {
-            if (invitationState !== "response") {
+            if (invitationState !== "response" && requestDocID !== '') {
                 VerifierGetConnectionInfo()
             }
             else if (invitationState === "response" && sendProof) {
@@ -333,16 +365,28 @@ function VaccineVerificationContainer(props) {
 
     }, [invitationState, connection_id, sendProof, presentation_exchange_id, verifyvaccine]);
 
+
     return (
         <Container className="text-center justify-content-center pt-5 mt-5">
             {(invitationState === "invitation") && <h5 className="pb-4 ">Show this QR to the passenger vaccination holder, Get it scanned by their phone</h5>}
             <Container>
                 <Col>
-                    {(invitationState === "Nil" && <div className="vertical-center">Please Wait ...</div>)}
-                    {(invitationState === "invitation") && <QRComponent value={QRData} />}
-                    {(invitationState === "response") && <div className="vertical-center">{message}</div>}
+                    {(invitationState === "Nil" && (modal === false) && <div className="vertical-center">Please Wait ...</div>)}
+                    {(invitationState === "invitation") && (modal === false) && <QRComponent value={QRData} />}
+                    {(invitationState === "response") && (modal === false) && <div className="vertical-center">{message}</div>}
                 </Col>
             </Container>
+
+            <Modal isOpen={modal} toggle={toggle} className={className} keyboard={dialogKeyboard} backdrop="static" centered>
+                <ModalHeader>User Travel Document ID</ModalHeader>
+                <ModalBody>
+                    <Input type="text" placeholder="Enter Document ID Here" onChange={(e) => setInputDocID(e.target.value)} rows={5} />
+                </ModalBody>
+                <ModalFooter>
+                    <Button color="primary" onClick={closeModal}>Continue</Button>{' '}
+                    <Button color="danger" onClick={exit}>Exit</Button>{' '}
+                </ModalFooter>
+            </Modal>
         </Container>
     )
 }
@@ -364,7 +408,5 @@ function VaccineVerificationContainer(props) {
 //     nationality: "Pakistani",
 //     doctype: "Passport",
 //     docID: "CV83831643",
-
 // }
-
 export default VaccineVerificationContainer
