@@ -1,0 +1,69 @@
+.App {
+    width: 100%;  
+    min-height: 100vh;
+   
+     display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+}
+
+.Root{
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.vertical-center {
+    min-height: 50%;  /* Fallback for browsers do NOT support vh unit */
+    min-height: 50vh; /* These two lines are counted as one :-)       */
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  
+.form {
+  padding: 1em;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid #20492B;
+  border-radius: .5em;
+  width: 500px;
+  
+}
+.inputField[type="email"]:hover {
+    border: 1px solid #20492B;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.inputField[type="email"]:focus {
+    border: 1px solid #20492B;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.inputField[type="password"]:focus{
+    border: 1px solid #20492B;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.inputField[type="password"]:hover{
+    border: 1px solid #20492B;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+label {
+  display: flex;
+  font-weight: 600;
+}
+
+.btny {
+    color: #FF4C4C;
+    border: 1px solid #FF4C4C;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}

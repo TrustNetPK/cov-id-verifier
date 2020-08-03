@@ -1,0 +1,72 @@
+.FormBox{
+  padding: 1em;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid #FCF8F7;
+  border-radius: .5em;
+    
+  }
+
+  .App {
+    width: 100%;  
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+  /* margin-top: 100px; */
+}
+  .piaheader{
+    background: #20492B;
+    padding: 30px 25px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 3px 3px 0 0;
+  }
+  .header{
+    background: #0069d9;
+    padding: 30px 25px;
+    font-size: 30px;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 3px 3px 0 0;
+}
+
+.inputField[type="text"]:hover {
+    border: 1px solid #0069d9;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.greeninputField[type="text"]:hover {
+  border: 1px solid #20492B;
+  border-radius: .5em;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.greeninputField[type="text"]:focus {
+  border: 1px solid #20492B;
+  border-radius: .5em;
+  box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+
+.inputField[type="date"]:hover {
+    border: 1px solid #0069d9;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.inputField[type="date"]:focus {
+    border: 1px solid #0069d9;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
+.inputField[type="text"]:focus {
+    border: 1px solid #0069d9;
+    border-radius: .5em;
+    box-shadow: 0 3px 20px 0px rgba(0, 0, 0, 0.1);
+}
