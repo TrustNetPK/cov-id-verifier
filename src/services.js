@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { API_SECRET } from './constants'
 
 export default {
 
@@ -9,7 +10,7 @@ export default {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": "secret"
+            "X-API-Key": `${API_SECRET}`
         };
         return axios.post('/connections/create-invitation', {}, { headers });
     }
