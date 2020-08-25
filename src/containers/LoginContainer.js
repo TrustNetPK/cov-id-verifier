@@ -10,7 +10,6 @@ import animic2 from '../assets/images/icons/anim-icon-2.png';
 function LoginContainer(props) {
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
-
 	const [modal, setModal] = useState(false);
 
 	const toggle = () => setModal(!modal);
