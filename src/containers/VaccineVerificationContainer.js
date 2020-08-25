@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom'
 import Auth from '../helpers/Auth'
 // import VaccinationStatus from '../helpers/VaccinationStatus'
 import '../assets/styles/LoginContainer.css'
-import { GET_API_SECRET, GET_VERIFIER_HOST_URL, PROXY_URL } from './constants'
+import { GET_API_SECRET, GET_VERIFIER_HOST_URL, PROXY_URL } from '../constants'
 
 export var requestDocID = '';
 
