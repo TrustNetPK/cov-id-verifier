@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_SECRET } from './constants'
+import { GET_API_SECRET, GET_VERIFIER_HOST_URL, PROXY_URL } from './constants'
 
 export default {
 
@@ -10,8 +10,8 @@ export default {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": `${API_SECRET}`
+            "X-API-Key": `${GET_API_SECRET()}`
         };
-        return axios.post('/connections/create-invitation', {}, { headers });
+        return axios.post(PROXY_URL + GET_VERIFIER_HOST_URL() + '/connections/create-invitation', {}, { headers });
     }
 }

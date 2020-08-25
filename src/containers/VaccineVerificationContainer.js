@@ -3,11 +3,11 @@ import { Container, Col, Button, Modal, ModalHeader, ModalBody, ModalFooter, Inp
 import QRComponent from '../components/QRComponent'
 import services from '../services.js'
 import axios from 'axios';
-import { API_SECRET } from '../constants'
 import { useHistory } from 'react-router-dom'
 import Auth from '../helpers/Auth'
 // import VaccinationStatus from '../helpers/VaccinationStatus'
 import '../assets/styles/LoginContainer.css'
+import { GET_API_SECRET, GET_VERIFIER_HOST_URL, PROXY_URL } from './constants'
 
 export var requestDocID = '';
 
@@ -129,9 +129,9 @@ function VaccineVerificationContainer(props) {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": `${API_SECRET}`
+            "X-API-Key": `${GET_API_SECRET()}`
         };
-        axios.get('/connections/' + connection_id, { headers }).then((response) => {
+        axios.get(PROXY_URL + GET_VERIFIER_HOST_URL() + '/connections/' + connection_id, { headers }).then((response) => {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             setMessage("Accepting the invitation of yours ...")
             setInvitationState(jsonData.state)
@@ -151,7 +151,7 @@ function VaccineVerificationContainer(props) {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": `${API_SECRET}`
+            "X-API-Key": `${GET_API_SECRET()}`
         };
         var proofRequestObject = {}
         proofRequestObject.connection_id = connection_id
@@ -190,7 +190,7 @@ function VaccineVerificationContainer(props) {
         var proof_request = JSON.stringify(proofRequestObject)
         // console.log(proof_request)
 
-        axios.post('/present-proof/send-request', proof_request, { headers }).then(function (response) {
+        axios.post(PROXY_URL + GET_VERIFIER_HOST_URL() + '/present-proof/send-request', proof_request, { headers }).then(function (response) {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             // console.log(jsonData.presentation_exchange_id);
             setPresentationExchangeID(jsonData.presentation_exchange_id)
@@ -210,9 +210,9 @@ function VaccineVerificationContainer(props) {
             'Access-Control-Allow-Methods': '*',
             "Access-Control-Allow-Headers": "*",
             "Access-Control-Allow-Credentials": "true",
-            "X-API-Key": `${API_SECRET}`
+            "X-API-Key": `${GET_API_SECRET()}`
         };
-        axios.post('/present-proof/records/' + presentation_exchange_id + '/verify-presentation', {}, { headers }).then(function (response) {
+        axios.post(PROXY_URL + GET_VERIFIER_HOST_URL() + '/present-proof/records/' + presentation_exchange_id + '/verify-presentation', {}, { headers }).then(function (response) {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             console.log("Verify Proof" + jsonData.state);
             if (jsonData.state === "verified") {
