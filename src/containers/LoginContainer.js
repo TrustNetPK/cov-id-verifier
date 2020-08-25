@@ -19,7 +19,17 @@ function LoginContainer(props) {
 		let pass = GET_PASSCODE()
 		if (email === 'verifier@vaccify.pk' && password === pass) {
 			Auth.authenticate();
-			props.history.replace('/onlocation')
+			if (localStorage.getItem("demo") === "PIA") {
+				props.history.replace('/bookticket')
+			}
+			else if (localStorage.getItem("demo") === "CAA") {
+				props.history.replace('/onlocation')
+			}
+			else {
+				alert("Something went wrong!")
+			}
+
+
 		}
 		else {
 			alert('Please login with correct credentials')

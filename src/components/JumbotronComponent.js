@@ -19,9 +19,16 @@ const JumbotronComponent = () => {
             <p className="lead">
               This demo shows how an institution can verify a digital immunity certificates of a person either online or face-2-face.</p>
             <Button className="mt-5" size="lg" color="success" onClick={() => {
-              localStorage.setItem('demo', "PIA");
-              VaccinationStatus.isVaccinated(false)
-              history.push('/bookticket')
+              let auth_login = Auth.getAuth();
+              if (auth_login == null) {
+                localStorage.setItem('demo', "PIA");
+                history.push('/login')
+              }
+              else {
+                localStorage.setItem('demo', "PIA");
+                VaccinationStatus.isVaccinated(false)
+                history.push('/bookticket')
+              }
             }}>Try Online Booking Demo</Button>
 
             <Button className="mt-5 ml-3" color="primary" size="lg" onClick={() => {

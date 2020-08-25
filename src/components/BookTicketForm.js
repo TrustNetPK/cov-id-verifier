@@ -41,8 +41,8 @@ const BookTicketForm = () => {
             <h1 className={` ${localStorage.getItem("demo") === "PIA" ? 'className="mb-5 pb-4 mt-2 piaheader' : 'className="mb-5 pb-4 mt-2 header'}`}
             >Fill your flight reservation info</h1>
 
-            <br />
-            <FormGroup tag="fieldset">
+            {/* <br /> */}
+            {/* <FormGroup tag="fieldset">
                 <FormGroup check sm={2}>
                     <Label check>
                         <Input type="radio" defaultChecked name="radio1" />{' '}
@@ -55,7 +55,7 @@ const BookTicketForm = () => {
             One way
           </Label>
                 </FormGroup>
-            </FormGroup>
+            </FormGroup> */}
 
             <br />
             <Row form>
