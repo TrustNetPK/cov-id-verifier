@@ -12,8 +12,6 @@ jobs:
     steps:
     - name: 'Checkout GitHub Action'
       uses: actions/checkout@v2
-      with:
-        heroku_email: ${{ secrets.HEROKU_EMAIL }}
 
     - name: Setup Node.js environment
       uses: actions/setup-node@v2.1.0
@@ -31,6 +29,8 @@ jobs:
     
     - name: Add remote origin
       run: |
+        git config user.email "${{ secrets.HEROKU_EMAIL }}"
+        git config user.email
         git remote add heroku_node https://heroku:${{ secrets.HEROKU_API_KEY }}@git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
         git fetch --unshallow
         git push heroku_node master
