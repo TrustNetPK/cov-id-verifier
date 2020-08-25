@@ -45,9 +45,9 @@ const HeaderComponent = () => {
                 style={{ boxShadow: '0 0px 50px rgba(0, 0, 0, 0.2)' }}>
                 <NavbarBrand href="/">
                     {width > 500 ? (
-                        <img src={CAALogo} alt="caa-logo" style={{ width: '60px', height: '50px' }} />
+                        <a href="http://verifier.trustnetpk.com"><img src={CAALogo} alt="caa-logo" style={{ width: '60px', height: '50px' }} /></a>
                     ) : (
-                            <img src={CAALogo} alt="caa-logo" style={{ width: '50px' }} />
+                            <a href="http://verifier.trustnetpk.com"> <img src={CAALogo} alt="caa-logo" style={{ width: '50px' }} /> </a>
                         )}</NavbarBrand>
                 <NavbarToggler onClick={toggle} />
                 <Collapse isOpen={isOpen} navbar>
