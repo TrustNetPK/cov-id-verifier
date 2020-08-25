@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form, FormGroup, Input, Container, Col, Label, InputGroup, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import Auth from '../helpers/Auth';
 import '../assets/styles/LoginContainer.css'
-import { GET_PASSCODE } from './constants'
+import { GET_PASSCODE } from '../constants'
 
 import animic1 from '../assets/images/icons/anim-icon-1.png';
 import animic2 from '../assets/images/icons/anim-icon-2.png';
