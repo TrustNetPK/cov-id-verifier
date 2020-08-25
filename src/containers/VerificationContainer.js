@@ -45,23 +45,23 @@ const VerificationContainer = (props) => {
 
                     <FormGroup>
                         <Label for="fname">
-                            First Name
+                            Name
                     </Label>
-                        <Input type="text" name="fname" id="fname" value={firstname} disabled />
+                        <Input type="text" name="fname" id="fname" value={firstname + ' ' + lastname} disabled />
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label for="lname">
                             Last Name
                     </Label>
                         <Input type="text" name="lname" id="lname" value={lastname} disabled />
-                    </FormGroup>
+                    </FormGroup> */}
                     <FormGroup>
                         <Label for="gender">
                             Gender
                     </Label>
                         <Input type="text" name="gender" id="gender" value={gender} disabled />
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label for="dob">
                             Date of Birth
                     </Label>
@@ -79,12 +79,12 @@ const VerificationContainer = (props) => {
                             Document Type
                     </Label>
                         <Input type="text" name="doctype" id="doctype" value={doctype} disabled />
-                    </FormGroup>
+                    </FormGroup> */}
                     <FormGroup>
                         <Label for="docID">
-                            Document ID
+                            Travel Document
                     </Label>
-                        <Input type="text" name="docID" id="docID" value={docID} disabled />
+                        <Input type="text" name="docID" id="docID" value={doctype + ': ' + docID} disabled />
                     </FormGroup>
                     <FormGroup>
                         <Label for="vacName">
@@ -98,7 +98,7 @@ const VerificationContainer = (props) => {
                     </Label>
                         <Input type="text" name="manufacturer" id="manufacturer" value={manufacturer} disabled />
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label for="dose">
                             Dosage
                     </Label>
@@ -109,7 +109,7 @@ const VerificationContainer = (props) => {
                             Vaccinator Name
                     </Label>
                         <Input type="text" name="vaccinatorName" id="vaccinatorName" value={vaccinatorName} disabled />
-                    </FormGroup>
+                    </FormGroup> */}
                     <FormGroup>
                         <Label for="vaccinatorOrg">
                             Vaccinator Organization
@@ -122,12 +122,12 @@ const VerificationContainer = (props) => {
                     </Label>
                         <Input type="text" name="validTill" id="validTill" value={validTill} disabled />
                     </FormGroup>
-                    <FormGroup>
+                    {/* <FormGroup>
                         <Label for="nextBoosterDate">
                             Next Booster Date
                     </Label>
                         <Input type="text" name="nextBoosterDate" id="nextBoosterDate" value={nextBoosterDate} disabled />
-                    </FormGroup>
+                    </FormGroup> */}
                     <br />
                     <br />
                     <br />
