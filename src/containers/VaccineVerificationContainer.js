@@ -77,7 +77,16 @@ function VaccineVerificationContainer(props) {
         try {
             var myObject = {}
             await services.CreateConnectionInvitation().then(function (response) {
-                console.log("Response of Create Connection Invite: " + JSON.stringify(response.data));
+                // console.log("Response of Create Connection Invite: " + JSON.stringify(response.data));
+                var org_name = ""
+                var org_logo_url = ""
+                if (localStorage.getItem("demo") === "PIA") {
+                    org_name = "NIA International Airlines"
+                    org_logo_url = "https://vaccify.s3.ap-south-1.amazonaws.com/images/pia.png"
+                } else if (localStorage.getItem("demo") === "CAA") {
+                    org_name = "Civil Aviation Authorities"
+                    org_logo_url = "https://vaccify.s3.ap-south-1.amazonaws.com/images/caa.png"
+                }
                 var jsonData = JSON.parse(JSON.stringify(response.data))
                 myObject.type = "connection_proof"
                 myObject.data = {}
@@ -105,11 +114,10 @@ function VaccineVerificationContainer(props) {
                 myObject.data.id_doc_type = "request"
                 myObject.data.doc_id = "request"
                 myObject.org = {}
-                myObject.org.name = "Civil Aviation Authorities"
-                myObject.org.img = "IMG_URL"
-                myObject.invitation = jsonData.invitation
-                // console.log("Invitation Link: " + JSON.stringify(jsonData.inviatation))
-                setConnectionID(jsonData.connection_id)
+                myObject.org.name = org_name
+                myObject.org.img = org_logo_url
+                myObject.invitation = jsonData
+                setConnectionID(jsonData['connection_id'])
                 setQRData(JSON.stringify(myObject))
             })
                 .catch(function (error) {
