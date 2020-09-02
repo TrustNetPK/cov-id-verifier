@@ -90,29 +90,29 @@ function VaccineVerificationContainer(props) {
                 var jsonData = JSON.parse(JSON.stringify(response.data))
                 myObject.type = "connection_proof"
                 myObject.data = {}
-                myObject.data.cred_type = "request"
-                myObject.data.vaccine_name = "request"
+                myObject.data.cred_type = "Vaccify Demo"
+                myObject.data.vacName = "request"
                 myObject.data.manufacturer = "request"
-                myObject.data.batch_no = "request"
+                myObject.data.batch = "request"
                 myObject.data.dose = "request"
-                myObject.data.dose_unit = "request"
-                myObject.data.validate_from = "request"
-                myObject.data.validate_to = "request"
-                myObject.data.next_booster_date = "request"
+                myObject.data.unit = "request"
+                myObject.data.validate_from = ""
+                myObject.data.validTill = "request"
+                myObject.data.nextBoosterDate = "request"
                 myObject.data.vaccinator_org = "request"
                 myObject.data.vaccinator_did = "request"
-                myObject.data.vaccinator_name = "request"
+                myObject.data.vaccinatorName = "request"
                 myObject.data.vaccinator_org_loc = "request"
                 myObject.data.vaccinator_org_type = "request"
                 myObject.data.vaccinator_org_logo = "request"
-                myObject.data.first_name = "request"
-                myObject.data.last_name = "request"
+                myObject.data.firstname = "request"
+                myObject.data.lastname = "request"
                 myObject.data.dob = "request"
                 myObject.data.nationality = "request"
                 myObject.data.gender = "request"
                 myObject.data.accreditor_cred_def_id = "request"
-                myObject.data.id_doc_type = "request"
-                myObject.data.doc_id = "request"
+                myObject.data.doctype = "request"
+                myObject.data.docID = "request"
                 myObject.org = {}
                 myObject.org.name = org_name
                 myObject.org.img = org_logo_url
@@ -170,28 +170,28 @@ function VaccineVerificationContainer(props) {
         proofRequestObject.proof_request.requested_attributes.n_group_attrs = {}
         proofRequestObject.proof_request.requested_attributes.n_group_attrs.names = [
             "cred_type",
-            "vaccine_name",
+            "vacName",
             "manufacturer",
-            "batch_no",
+            "batch",
             "dose",
-            "dose_unit",
+            "unit",
             "validate_from",
-            "validate_to",
-            "next_booster_date",
+            "validTill",
+            "nextBoosterDate",
             "vaccinator_org",
             "vaccinator_did",
-            "vaccinator_name",
+            "vaccinatorName",
             "vaccinator_org_loc",
             "vaccinator_org_type",
             "vaccinator_org_logo",
-            "first_name",
-            "last_name",
+            "firstname",
+            "lastname",
             "dob",
             "nationality",
             "gender",
             "accreditor_cred_def_id",
-            "id_doc_type",
-            "doc_id"]
+            "doctype",
+            "docID"]
         proofRequestObject.proof_request.requested_attributes.n_group_attrs.restrictions = [{ "attr::doc_id::value": requestDocID }]
 
         proofRequestObject.proof_request.requested_predicates = {}
@@ -225,22 +225,22 @@ function VaccineVerificationContainer(props) {
             console.log("Verify Proof" + jsonData.state);
             if (jsonData.state === "verified") {
                 var n_group_attrs = JSON.parse(JSON.stringify((jsonData.presentation.requested_proof.revealed_attr_groups.n_group_attrs)))
-                setVacName(n_group_attrs.values.vaccine_name.raw)
+                setVacName(n_group_attrs.values.vacName.raw)
                 setManufacturer(n_group_attrs.values.manufacturer.raw)
-                setBatch(n_group_attrs.values.batch_no.raw)
+                setBatch(n_group_attrs.values.batch.raw)
                 setDose(n_group_attrs.values.dose.raw)
-                setUnit(n_group_attrs.values.dose_unit.raw)
-                setValidTill(n_group_attrs.values.validate_to.raw)
-                setNextBoosterDate(n_group_attrs.values.next_booster_date.raw)
+                setUnit(n_group_attrs.values.unit.raw)
+                setValidTill(n_group_attrs.values.validTill.raw)
+                setNextBoosterDate(n_group_attrs.values.nextBoosterDate.raw)
                 setVaccinatorOrg(n_group_attrs.values.vaccinator_org.raw)
-                setVaccinatorName(n_group_attrs.values.vaccinator_name.raw)
-                setFirstName(n_group_attrs.values.first_name.raw)
-                setLastName(n_group_attrs.values.last_name.raw)
+                setVaccinatorName(n_group_attrs.values.vaccinatorName.raw)
+                setFirstName(n_group_attrs.values.firstname.raw)
+                setLastName(n_group_attrs.values.lastname.raw)
                 setDob(n_group_attrs.values.dob.raw)
                 setNationality(n_group_attrs.values.nationality.raw)
                 setGender(n_group_attrs.values.gender.raw)
-                setDocType(n_group_attrs.values.id_doc_type.raw)
-                setDocID(n_group_attrs.values.doc_id.raw)
+                setDocType(n_group_attrs.values.doctype.raw)
+                setDocID(n_group_attrs.values.docID.raw)
                 setVaccine(true)
                 // console.log(attr_data.attr1_referent.raw)
 
