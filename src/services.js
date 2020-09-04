@@ -12,6 +12,6 @@ export default {
             "Access-Control-Allow-Credentials": "true",
             "X-API-Key": `${GET_API_SECRET()}`
         };
-        return axios.post(PROXY_URL + GET_VERIFIER_HOST_URL() + '/connections/create-invitation', {}, { headers });
+        return axios.post('/connections/create-invitation', {}, { headers });
     }
 }

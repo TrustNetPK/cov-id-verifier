@@ -32,7 +32,7 @@ function VaccineVerificationContainer(props) {
     const [dob, setDob] = useState('')
     const [nationality, setNationality] = useState('')
     const [doctype, setDocType] = useState('')
-    const [docID, setDocID] = useState('')
+    const [doc_id, setDocID] = useState('')
     const [vaccinatorOrg, setVaccinatorOrg] = useState('')
     const [vacName, setVacName] = useState('')
     const [manufacturer, setManufacturer] = useState('')
@@ -112,7 +112,7 @@ function VaccineVerificationContainer(props) {
                 myObject.data.gender = "request"
                 myObject.data.accreditor_cred_def_id = "request"
                 myObject.data.doctype = "request"
-                myObject.data.docID = "request"
+                myObject.data.doc_id = "request"
                 myObject.org = {}
                 myObject.org.name = org_name
                 myObject.org.img = org_logo_url
@@ -139,7 +139,7 @@ function VaccineVerificationContainer(props) {
             "Access-Control-Allow-Credentials": "true",
             "X-API-Key": `${GET_API_SECRET()}`
         };
-        axios.get(PROXY_URL + GET_VERIFIER_HOST_URL() + '/connections/' + connection_id, { headers }).then((response) => {
+        axios.get('/connections/' + connection_id, { headers }).then((response) => {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             setMessage("Accepting the invitation of yours ...")
             setInvitationState(jsonData.state)
@@ -191,14 +191,14 @@ function VaccineVerificationContainer(props) {
             "gender",
             "accreditor_cred_def_id",
             "doctype",
-            "docID"]
+            "doc_id"]
         proofRequestObject.proof_request.requested_attributes.n_group_attrs.restrictions = [{ "attr::doc_id::value": requestDocID }]
 
         proofRequestObject.proof_request.requested_predicates = {}
         var proof_request = JSON.stringify(proofRequestObject)
         // console.log(proof_request)
 
-        axios.post(PROXY_URL + GET_VERIFIER_HOST_URL() + '/present-proof/send-request', proof_request, { headers }).then(function (response) {
+        axios.post('/present-proof/send-request', proof_request, { headers }).then(function (response) {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             // console.log(jsonData.presentation_exchange_id);
             setPresentationExchangeID(jsonData.presentation_exchange_id)
@@ -220,7 +220,7 @@ function VaccineVerificationContainer(props) {
             "Access-Control-Allow-Credentials": "true",
             "X-API-Key": `${GET_API_SECRET()}`
         };
-        axios.post(PROXY_URL + GET_VERIFIER_HOST_URL() + '/present-proof/records/' + presentation_exchange_id + '/verify-presentation', {}, { headers }).then(function (response) {
+        axios.post('/present-proof/records/' + presentation_exchange_id + '/verify-presentation', {}, { headers }).then(function (response) {
             var jsonData = JSON.parse(JSON.stringify(response.data))
             console.log("Verify Proof" + jsonData.state);
             if (jsonData.state === "verified") {
@@ -240,7 +240,7 @@ function VaccineVerificationContainer(props) {
                 setNationality(n_group_attrs.values.nationality.raw)
                 setGender(n_group_attrs.values.gender.raw)
                 setDocType(n_group_attrs.values.doctype.raw)
-                setDocID(n_group_attrs.values.docID.raw)
+                setDocID(n_group_attrs.values.doc_id.raw)
                 setVaccine(true)
                 // console.log(attr_data.attr1_referent.raw)
 
@@ -294,7 +294,7 @@ function VaccineVerificationContainer(props) {
                     dob: dob,
                     nationality: nationality,
                     doctype: doctype,
-                    docID: docID,
+                    doc_id: doc_id,
 
                 })
             }
@@ -350,6 +350,6 @@ function VaccineVerificationContainer(props) {
 //     dob: "1990-02-21",
 //     nationality: "Pakistani",
 //     doctype: "Passport",
-//     docID: "CV83831643",
+//     doc_id: "CV83831643",
 // }
 export default VaccineVerificationContainer
