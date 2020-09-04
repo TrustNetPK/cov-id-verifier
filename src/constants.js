@@ -19,5 +19,3 @@ export function GET_VERIFIER_HOST_URL() {
     else
         return VERIFIER_HOST_URL
 }
-
-export var PROXY_URL = 'https://cors-anywhere.herokuapp.com/'

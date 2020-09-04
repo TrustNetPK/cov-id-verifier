@@ -14,7 +14,7 @@ const VerificationContainer = (props) => {
     const [dob, setDob] = useState(props.location.state.dob)
     const [nationality, setNationality] = useState(props.location.state.nationality)
     const [doctype, setDocType] = useState(props.location.state.doctype)
-    const [docID, setDocID] = useState(props.location.state.docID)
+    const [doc_id, setDocID] = useState(props.location.state.doc_id)
     const [vacName, setVacName] = useState(props.location.state.vacName)
     const [manufacturer, setManufacturer] = useState(props.location.state.manufacturer)
     const [dose, setDose] = useState(props.location.state.dose)
@@ -81,10 +81,10 @@ const VerificationContainer = (props) => {
                         <Input type="text" name="doctype" id="doctype" value={doctype} disabled />
                     </FormGroup> */}
                     <FormGroup>
-                        <Label for="docID">
+                        <Label for="doc_id">
                             Travel Document
                     </Label>
-                        <Input type="text" name="docID" id="docID" value={doctype + ': ' + docID} disabled />
+                        <Input type="text" name="doc_id" id="doc_id" value={doctype + ': ' + doc_id} disabled />
                     </FormGroup>
                     <FormGroup>
                         <Label for="vacName">
