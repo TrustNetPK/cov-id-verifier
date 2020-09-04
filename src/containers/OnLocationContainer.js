@@ -12,7 +12,7 @@ function OnLocationContainer(props) {
     const [dob, setDob] = useState('')
     const [nationality, setNationality] = useState('')
     const [doctype, setDocType] = useState('')
-    const [docID, setDocID] = useState('')
+    const [doc_id, setDocID] = useState('')
     const [vaccinatorOrg, setVaccinatorOrg] = useState('')
     const [vacName, setVacName] = useState('')
     const [manufacturer, setManufacturer] = useState('')
@@ -36,7 +36,7 @@ function OnLocationContainer(props) {
                     setDob(props.dob)
                     setNationality(props.nationality)
                     setDocType(props.doctype)
-                    setDocID(props.docID)
+                    setDocID(props.doc_id)
                     setVaccinatorOrg(props.vaccinatorOrg)
                     setVacName(props.vacName)
                     setManufacturer(props.manufacturer)
@@ -51,7 +51,7 @@ function OnLocationContainer(props) {
             }
             {!verifyvaccine &&
                 //console.log("Next Booster Date" + nextBoosterDate)
-                history.push("/verification", { firstname: firstname, lastname: lastname, gender: gender, dob: dob, nationality: nationality, doctype: doctype, docID: docID, vacName: vacName, manufacturer: manufacturer, dose: dose, unit: unit, vaccinatorName: vaccinatorName, vaccinatorOrg: vaccinatorOrg, batch: batch, validTill: validTill, nextBoosterDate: nextBoosterDate })
+                history.push("/verification", { firstname: firstname, lastname: lastname, gender: gender, dob: dob, nationality: nationality, doctype: doctype, doc_id: doc_id, vacName: vacName, manufacturer: manufacturer, dose: dose, unit: unit, vaccinatorName: vaccinatorName, vaccinatorOrg: vaccinatorOrg, batch: batch, validTill: validTill, nextBoosterDate: nextBoosterDate })
             }
         </Container>
     );

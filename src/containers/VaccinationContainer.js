@@ -38,7 +38,7 @@ function VaccinationContainer(props) {
                 dob: props.dob,
                 nationality: props.nationality,
                 doctype: props.doctype,
-                docID: props.docID,
+                doc_id: props.doc_id,
                 departureDate: props.departureDate, returnDate: props.returnDate, passenger: props.passenger, cabin: props.cabin, from: props.From, to: props.To
             })
         }
@@ -150,7 +150,7 @@ function VaccinationContainer(props) {
                     <Col md={3}>
                         <FormGroup>
                             <Label for="docid">Travel Document ID</Label>
-                            <Input type="text" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} name="docid" id="docid" value={props.docID} disabled />
+                            <Input type="text" className={` ${localStorage.getItem("demo") === "PIA" ? 'greeninputField rounded-pill' : 'inputField rounded-pill'}`} name="docid" id="docid" value={props.doc_id} disabled />
                         </FormGroup>
                     </Col>
                 </Row>

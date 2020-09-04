@@ -12,7 +12,7 @@ function VerifyContainer(props) {
     const [dob, setDob] = useState('')
     const [nationality, setNationality] = useState('')
     const [doctype, setDocType] = useState('')
-    const [docID, setDocID] = useState('')
+    const [doc_id, setDocID] = useState('')
     const [vaccinatorOrg, setVaccinatorOrg] = useState('')
     const [vacName, setVacName] = useState('')
     const [manufacturer, setManufacturer] = useState('')
@@ -45,7 +45,7 @@ function VerifyContainer(props) {
                 dob={dob}
                 nationality={nationality}
                 doctype={doctype}
-                docID={docID}
+                doc_id={doc_id}
                 vaccinatorOrg={vaccinatorOrg}
                 dataCallback={(props) => {
                     setVaccine(true)
@@ -58,7 +58,7 @@ function VerifyContainer(props) {
                 setVaccine(false)
                 setNationality(props.nationality)
                 setDocType(props.doctype)
-                setDocID(props.docID)
+                setDocID(props.doc_id)
                 setVaccinatorOrg(props.vaccinatorOrg)
                 setVacName(props.vacName)
                 setManufacturer(props.manufacturer)
